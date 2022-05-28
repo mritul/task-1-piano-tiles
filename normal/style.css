@@ -43,6 +43,22 @@ p {
   margin: 10px 0;
 }
 
+.startBtn {
+  outline: none;
+  background: none;
+  border: 2px solid rgb(0, 123, 255);
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 0 10px 0 10px;
+  transition: 0.5s ease;
+}
+
+.startBtn:hover {
+  background-color: rgb(0, 123, 255);
+  color: white;
+}
+
 .box {
   border: 1px solid rgb(186, 186, 186);
   pointer-events: none;

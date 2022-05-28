@@ -1,8 +1,7 @@
 //Function that starts the game (wraps the entire code)
 function startGame() {
   //Removing the keypress listener to start game or else game keeps starting on each press
-  window.removeEventListener("keypress", startGame);
-  document.querySelector(".instruction").style.display = "none";
+  document.querySelector(".startBtn").style.display = "none";
 
   //Selecting all html elements and declaring global variables
   let boxes = document.querySelectorAll(".box");
@@ -128,4 +127,4 @@ function startGame() {
   main();
 }
 
-window.addEventListener("keypress", startGame);
+document.querySelector(".startBtn").addEventListener("click", startGame);
