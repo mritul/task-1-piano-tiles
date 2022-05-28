@@ -7,10 +7,10 @@ function startGame() {
   let boxes = document.querySelectorAll(".box");
   const roundField = document.querySelector(".round");
   const scoreField = document.querySelector(".score");
-  const clickBeep = new Audio("click-beep.mp3");
-  clickBeep.playbackRate = "2.5"; // So that quick clicks don't skip playing the audio on click
   const lossBeep = new Audio("loss-beep.mp3");
-  lossBeep.playbackRate = "3";
+  const clickBeep = new Audio("click-beep.mp3");
+  clickBeep.playbackRate = "3"; // Quick clicks won't miss on audio if the previous audio gets over sooner hence we increase the playback speed
+  lossBeep.playbackRate = "2";
   var score = 0;
   var round = 1;
   var clicks = 0;
@@ -33,7 +33,7 @@ function startGame() {
   //Function that generates indices to be clicked every round
   const generateQuestions = (n) => {
     for (let i = 0; i < n; i++) {
-      var random_index_to_push = Math.abs(Math.ceil(Math.random() * 16 - 1)); //Abs is because -0 is returned so we mod it
+      var random_index_to_push = Math.abs(Math.ceil(Math.random() * 36 - 1)); //Abs is because -0 is returned so we mod it
       if (inArr(random_index_to_push, questions_indices)) {
         n += 1; // Extending for loop if same number is generated again (We need an array of length of the current round)
       } else {
@@ -73,12 +73,12 @@ function startGame() {
         box.style.cursor = "pointer";
         box.addEventListener("click", (e) => {
           clicks += 1;
-          // Adding sound effect
           clickBeep.play();
           // If the box user clicks is present in the question array generated then splice it from the question indices or else display loss message and reload the page as user clicks the wrong tile
+          // The only difference in hacker mode is one extra 'and' condition where the box user clicks should be the first element of question indices(first elements keep updating as we splice so we can use the index 0 each time)
           if (
-            inArr(e.target.getAttribute("data-item"), questions_indices) - 1 ==
-            questions_indices[0]
+            inArr(e.target.getAttribute("data-item"), questions_indices) &&
+            e.target.getAttribute("data-item") == questions_indices[0]
           ) {
             questions_indices.splice(
               inArr(e.target.getAttribute("data-item"), questions_indices) - 1,
@@ -86,15 +86,6 @@ function startGame() {
             );
             e.target.style.pointerEvents = "none";
           } else {
-            console.log(
-              inArr(e.target.getAttribute("data-item"), questions_indices) - 1,
-              questions_indices[0],
-              questions_indices
-            );
-            console.log(e.target.getAttribute("data-item"), questions_indices);
-            console.log(
-              inArr(e.target.getAttribute("data-item"), questions_indices)
-            );
             lossBeep.play();
             window.alert(
               "Oops! You chose a wrong tile. Your score is " + score
@@ -136,11 +127,13 @@ function startGame() {
   //Main code using the functions
   const main = async () => {
     //This array question indices is manipulated throughout the game (it is reset after each round and reused)
-    while (round <= 16) {
+    while (round <= 36) {
       generateQuestions(round); //The number indices generated is the current round number
       await glowTiles();
       await tilesSelect();
     }
+    window.alert("Yay! You won the game");
+    location.reload();
   };
   main();
 }

@@ -39,7 +39,7 @@ main {
 .container {
   width: 310px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   background-color: black;
   height: 310px;
   margin-top: 20px;
