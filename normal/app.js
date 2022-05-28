@@ -10,6 +10,7 @@ function startGame() {
   var score = 0;
   var round = 1;
   var clicks = 0;
+  //This array question indices is manipulated throughout the game (it is reset after each round and reused)
   let questions_indices = [];
 
   // ***HELPER FUNCTIONS***
@@ -52,7 +53,7 @@ function startGame() {
     }
 
     // We now return a promise after the tiles have finished glowing
-    //The time taken for all tiles to glow is 1200*question_indices.length so we use a settimeout for returning a promise
+    //The time taken for all tiles to glow is 1200*question_indices.length so we use a settimeout for resolving the promise
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve();
@@ -117,7 +118,6 @@ function startGame() {
 
   //Main code using the functions
   const main = async () => {
-    //This array question indices is manipulated throughout the game (it is reset after each round and reused)
     while (round <= 16) {
       generateQuestions(round); //The number indices generated is the current round number
       await glowTiles();
