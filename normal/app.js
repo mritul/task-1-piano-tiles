@@ -118,7 +118,7 @@ function startGame() {
   //Main code using the functions
   const main = async () => {
     //This array question indices is manipulated throughout the game (it is reset after each round and reused)
-    while (round <= 1) {
+    while (round <= 16) {
       generateQuestions(round); //The number indices generated is the current round number
       await glowTiles();
       await tilesSelect();

@@ -15,10 +15,17 @@ body {
 header {
   text-align: center;
   padding: 15px;
-  height: 10vh;
+  height: 15vh;
   border-bottom: 2px solid rgb(184, 184, 184);
   width: 80%;
   margin: auto;
+  color: white;
+}
+
+h4 {
+  font-size: 20px;
+  margin-top: 20px;
+  color: yellow;
 }
 
 main {
@@ -26,7 +33,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  height: 85vh;
 }
 
 .container {
@@ -41,12 +48,19 @@ main {
 
 p {
   margin: 10px 0;
+  color: white;
+}
+
+main h1 {
+  color: white;
 }
 
 .startBtn {
   outline: none;
+  margin-bottom: 10px;
   background: none;
-  border: 2px solid rgb(0, 123, 255);
+  color: aqua;
+  border: 2px solid aqua;
   padding: 10px 15px;
   cursor: pointer;
   font-size: 20px;
@@ -55,7 +69,7 @@ p {
 }
 
 .startBtn:hover {
-  background-color: rgb(0, 123, 255);
+  background-color: aqua;
   color: white;
 }
 
@@ -63,6 +77,9 @@ p {
   border: 1px solid rgb(186, 186, 186);
   pointer-events: none;
   transition: background-color 0.5s ease;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: grey;
 }
 
 .box:hover {
@@ -70,18 +87,5 @@ p {
 }
 
 .box:active {
-  background-color: greenyellow !important;
-}
-
-.box:nth-child(1) {
-  border-radius: 20px 0 0 0;
-}
-.box:nth-child(4) {
-  border-radius: 0 20px 0 0;
-}
-.box:nth-child(13) {
-  border-radius: 0 0 0 20px;
-}
-.box:nth-child(16) {
-  border-radius: 0 0 20px 0;
+  background-color: aqua !important;
 }

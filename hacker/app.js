@@ -7,6 +7,10 @@ function startGame() {
   let boxes = document.querySelectorAll(".box");
   const roundField = document.querySelector(".round");
   const scoreField = document.querySelector(".score");
+  const clickBeep = new Audio("click-beep.mp3");
+  clickBeep.playbackRate = "2.5"; // So that quick clicks don't skip playing the audio on click
+  const lossBeep = new Audio("loss-beep.mp3");
+  lossBeep.playbackRate = "3";
   var score = 0;
   var round = 1;
   var clicks = 0;
@@ -42,11 +46,10 @@ function startGame() {
   const glowTiles = () => {
     for (let i = 0; i < questions_indices.length; i++) {
       setTimeout(() => {
-        boxes[questions_indices[i]].style.backgroundColor =
-          "rgb(137, 137, 137)";
+        boxes[questions_indices[i]].style.backgroundColor = "aqua";
         //Now to make the glow off we nest a settimeout
         setTimeout(() => {
-          boxes[questions_indices[i]].style.backgroundColor = "rgb(0, 0, 0)";
+          boxes[questions_indices[i]].style.backgroundColor = "grey";
         }, 1200);
       }, 1200 * i); // 1200*i is to prevent all tiles from glowing at the same time
     }
@@ -70,14 +73,29 @@ function startGame() {
         box.style.cursor = "pointer";
         box.addEventListener("click", (e) => {
           clicks += 1;
+          // Adding sound effect
+          clickBeep.play();
           // If the box user clicks is present in the question array generated then splice it from the question indices or else display loss message and reload the page as user clicks the wrong tile
-          if (inArr(e.target.getAttribute("data-item"), questions_indices)) {
+          if (
+            inArr(e.target.getAttribute("data-item"), questions_indices) - 1 ==
+            questions_indices[0]
+          ) {
             questions_indices.splice(
               inArr(e.target.getAttribute("data-item"), questions_indices) - 1,
               1
             );
             e.target.style.pointerEvents = "none";
           } else {
+            console.log(
+              inArr(e.target.getAttribute("data-item"), questions_indices) - 1,
+              questions_indices[0],
+              questions_indices
+            );
+            console.log(e.target.getAttribute("data-item"), questions_indices);
+            console.log(
+              inArr(e.target.getAttribute("data-item"), questions_indices)
+            );
+            lossBeep.play();
             window.alert(
               "Oops! You chose a wrong tile. Your score is " + score
             );
