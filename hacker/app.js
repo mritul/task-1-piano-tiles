@@ -1,8 +1,31 @@
+let objToPush = { name: undefined, score: undefined }; // We make it global because we get the name in showModal function but need to use it in startGame function
+// If localstorage has no array holding all user objects then we create one
+if (localStorage.getItem("dataArray") == null) {
+  const arrayForLocalStorage = [];
+  localStorage.setItem("dataArray", JSON.stringify(arrayForLocalStorage));
+}
+
+//Function to display modal that takes in the username
+function showModal() {
+  const modal = document.querySelector("#modal");
+  const gameSection = document.querySelector("main");
+  const form = document.querySelector("form");
+  gameSection.style.opacity = "0.3";
+  modal.showModal();
+  const nameInput = document.querySelector("#name");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    objToPush.name = nameInput.value;
+    modal.close();
+    gameSection.style.opacity = "1";
+  });
+}
+
 //Function that starts the game (wraps the entire code)
 function startGame() {
   //Removing the keypress listener to start game or else game keeps starting on each press
   document.querySelector(".startBtn").style.display = "none";
-
+  console.log(name);
   //Selecting all html elements and declaring global variables
   let boxes = document.querySelectorAll(".box");
   const roundField = document.querySelector(".round");
@@ -91,6 +114,15 @@ function startGame() {
             window.alert(
               "Oops! You chose a wrong tile. Your score is " + score
             );
+            objToPush.score = score;
+            var arrayFromLocalStorage = JSON.parse(
+              window.localStorage.getItem("dataArray")
+            );
+            arrayFromLocalStorage.push(objToPush);
+            window.localStorage.setItem(
+              "dataArray",
+              JSON.stringify(arrayFromLocalStorage)
+            ); // For leaderboard
             location.reload();
           }
           //Checking if we can move to next round
@@ -127,15 +159,17 @@ function startGame() {
 
   //Main code using the functions
   const main = async () => {
-    while (round <= 36) {
+    while (round <= 16) {
       generateQuestions(round); //The number indices generated is the current round number
       await glowTiles();
       await tilesSelect();
     }
     window.alert("Yay! You won the game");
+    window.localStorage.setItem(name, score); // For leaderboard
     location.reload();
   };
   main();
 }
 
+window.addEventListener("load", showModal);
 document.querySelector(".startBtn").addEventListener("click", startGame);

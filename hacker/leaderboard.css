@@ -1,0 +1,64 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-decoration: none;
+}
+
+body {
+  min-height: 100vh;
+  max-width: 100vw;
+}
+
+header {
+  height: 15vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(220, 183, 255);
+}
+
+header a {
+  color: rgb(0, 145, 255);
+  margin-top: 10px;
+  font-weight: bolder;
+}
+
+main {
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*Leaderboard*/
+table {
+  border-radius: 10px;
+  width: 50%;
+  border-spacing: 0;
+}
+
+table > * {
+  text-align: center;
+}
+
+th {
+  padding: 15px;
+  color: white;
+}
+
+thead {
+  background-color: black;
+}
+
+tbody td {
+  padding: 15px;
+}
+
+tbody tr:hover td {
+  background-color: rgb(202, 141, 248);
+}
