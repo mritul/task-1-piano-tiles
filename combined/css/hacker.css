@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-decoration: none;
+}
+
+#modal {
+  width: 320px;
+  height: 150px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background-color: rgb(145, 145, 145);
+  border: none;
+  padding: 100px 0;
+  border-radius: 10px;
+}
+
+form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+form a {
+  color: rgb(0, 0, 160);
+  margin: 10px 0;
+}
+
+#modal input[type="submit"] {
+  padding: 5px;
+  margin-top: 10px;
+}
+
+#modal input[type="text"] {
+  padding: 5px;
+  margin-top: 10px;
+  outline: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+}
+
+header {
+  padding-top: 10px;
+  color: white;
+  height: 15vh;
+  border-bottom: 2px solid rgb(184, 184, 184);
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.modePanel {
+  display: flex;
+  justify-content: space-around;
+  width: 320px;
+  margin-top: 1rem;
+}
+
+.modePanel a {
+  font-size: 1.5rem;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.active {
+  color: white !important;
+  background-color: rgb(0, 119, 255);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+}
+
+.container {
+  width: 310px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: black;
+  height: 310px;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+p {
+  margin: 10px 0;
+  color: white;
+}
+
+main h1 {
+  color: white;
+}
+
+dialog {
+  color: white;
+}
+
+a {
+  color: rgb(0, 145, 255);
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+
+.startBtn {
+  outline: none;
+  margin-bottom: 10px;
+  background: none;
+  color: aqua;
+  border: 2px solid aqua;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 0 10px 0 10px;
+  transition: 0.5s ease;
+}
+
+.startBtn:hover {
+  background-color: aqua;
+  color: white;
+}
+
+.box {
+  border: 1px solid rgb(186, 186, 186);
+  pointer-events: none;
+  transition: background-color 0.5s ease;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: grey;
+}
+
+.box:hover {
+  transition: background-color 0.5s ease;
+}
+
+.box:active {
+  background-color: aqua !important;
+}
