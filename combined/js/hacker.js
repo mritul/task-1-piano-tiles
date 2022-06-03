@@ -35,7 +35,7 @@ function startGame() {
   const scoreField = document.querySelector(".score");
   const lossBeep = new Audio("../audio/loss-beep.mp3");
   const clickBeep = new Audio("../audio/click-beep.mp3");
-  clickBeep.playbackRate = "3"; // Quick clicks won't miss on audio if the previous audio gets over sooner hence we increase the playback speed
+  clickBeep.playbackRate = "4"; // Quick clicks won't miss on audio if the previous audio gets over sooner hence we increase the playback speed
   lossBeep.playbackRate = "2";
   var score = 0;
   var round = 1;
